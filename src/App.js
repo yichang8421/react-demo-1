@@ -4,22 +4,13 @@ class App extends React.PureComponent {
     constructor() {
         super();
         this.state = {
-            n:0
+            n: 0,
+            arr: ['a', 'b', 'c']
         };
     }
 
     render() {
-        return (
-            <>
-                {(this.state.n%2) ? <div>奇数</div> : <div>偶数</div>}
-                <br/>
-                <button onClick={()=>{
-                    this.setState((state)=>{
-                        return {n: state.n +1};
-                    })
-                }}>+1</button>
-            </>
-        );
+        return this.state.arr.map(i => <div key={i}>{i}</div>);
     }
 }
 
