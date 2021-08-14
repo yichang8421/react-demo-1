@@ -5,12 +5,22 @@ class App extends React.PureComponent {
         super();
         this.state = {
             n: 0,
-            arr: ['a', 'b', 'c']
+            width: undefined
         };
     }
 
+    componentDidMount() {
+        const div = document.getElementById("divWidth");
+        const {width} = div.getBoundingClientRect();
+        this.setState(()=>{
+            return {width};
+        })
+    }
+
     render() {
-        return this.state.arr.map(i => <div key={i}>{i}</div>);
+        return (
+            <div id="divWidth">window width: {this.state.width}</div>
+        );
     }
 }
 
