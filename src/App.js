@@ -1,15 +1,11 @@
 import React from 'react'
 
-class App extends React.Component {
+class App extends React.PureComponent {
     constructor() {
         super();
         this.state = {
             n:0
         };
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(nextState.n === this.state.n) return false;
     }
 
     render() {
