@@ -9,21 +9,25 @@ class App extends React.PureComponent {
     }
 
     render() {
-        console.log('rendered');
-        return (
-            <div>
-                n: {this.state.n}
-                <br/>
-                <button onClick={()=>{
-                    this.setState((state)=>{
-                        return {n: state.n + 1};
-                    });
-                    this.setState((state)=>{
-                        return {n: state.n - 1};
-                    });
-                }}>+1</button>
-            </div>
-        );
+        const x = (
+            <>
+                <div>
+                    n: {this.state.n}
+                    <br/>
+                    <button onClick={() => {
+                        this.setState((state) => {
+                            return {n: state.n + 1};
+                        });
+                        this.setState((state) => {
+                            return {n: state.n - 1};
+                        });
+                    }}>+1
+                    </button>
+                </div>
+            </>
+        )
+        console.log(x);
+        return x;
 
     }
 }
