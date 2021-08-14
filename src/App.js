@@ -7,10 +7,11 @@ class App extends React.PureComponent {
             n: 0,
             width: undefined
         };
+        this.myRef = React.createRef();
     }
 
     componentDidMount() {
-        const div = document.getElementById("divWidth");
+        const div = this.myRef.current;
         const {width} = div.getBoundingClientRect();
         this.setState(()=>{
             return {width};
@@ -19,7 +20,7 @@ class App extends React.PureComponent {
 
     render() {
         return (
-            <div id="divWidth">window width: {this.state.width}</div>
+            <div ref={this.myRef}>window width: {this.state.width}</div>
         );
     }
 }
