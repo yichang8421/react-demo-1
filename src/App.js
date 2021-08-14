@@ -1,6 +1,7 @@
 import React from 'react'
 
 class App extends React.PureComponent {
+    myRef = undefined;
     constructor() {
         super();
         this.state = {
