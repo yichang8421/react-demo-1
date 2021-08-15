@@ -1,19 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
+import useUpdate from "./useUpdate";
 
 const App = () => {
     const [n, setN] = useState(0);
 
-    const [nUpdateCount, setNUpdateCount] = useState(0);
-
-    useEffect(() => {
-        setNUpdateCount(nUpdateCount => nUpdateCount + 1);
-    }, [n]);
-
-    useEffect(() => {
-        if (nUpdateCount > 1) {
-            console.log('n updeated');
-        }
-    }, [nUpdateCount]);
+    useUpdate(()=>{
+        console.log("updated");
+    },n);
 
     return (
         <div className="root">
