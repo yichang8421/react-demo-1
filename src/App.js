@@ -4,8 +4,8 @@ const App = () => {
     const [n, setN] = useState(0);
 
     useEffect(()=>{
-        console.log('use effect');
-    },[]);
+        console.log('n updeated');
+    },[n]);
 
     return (
         <div className="root">
