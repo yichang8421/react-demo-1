@@ -1,7 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const App = () => {
     const [n, setN] = useState(0);
+
+    useEffect(()=>{
+        console.log('use effect');
+    },[]);
+
     return (
         <div className="root">
             n: {n}
