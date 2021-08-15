@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 const useUpdate = (fn, n) => {
     const [nUpdateCount, setNUpdateCount] = useState(0);
+
     useEffect(() => {
         setNUpdateCount(nUpdateCount => nUpdateCount + 1);
     }, [n]);
