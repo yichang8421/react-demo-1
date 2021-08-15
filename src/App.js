@@ -22,7 +22,7 @@ const Child = () => {
         return () => {
             console.log("Child被销毁了(componentWillUnmount)");
         }
-    })
+    },[])
 
     return (
         <div>Child</div>
