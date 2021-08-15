@@ -1,29 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-class App extends React.PureComponent {
-    myRef = undefined;
-    constructor() {
-        super();
-        this.state = {
-            n: 0,
-            width: undefined
-        };
-        this.myRef = React.createRef();
-    }
-
-    componentDidMount() {
-        const div = this.myRef.current;
-        const {width} = div.getBoundingClientRect();
-        this.setState(()=>{
-            return {width};
-        })
-    }
-
-    render() {
-        return (
-            <div ref={this.myRef}>window width: {this.state.width}</div>
-        );
-    }
+const App = () => {
+    const [n, setN] = useState(0);
+    return (
+        <div className="root">
+            n: {n}
+            <hr/>
+            <button onClick={()=>{
+                setN(n+1);
+            }}>+1</button>
+        </div>
+    );
 }
 
 
