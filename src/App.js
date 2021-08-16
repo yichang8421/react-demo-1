@@ -9,6 +9,8 @@ const reducer = (state, action) => {
         return {n: state.n + action.number};
     } else if (action.type === 'multi') {
         return {n: state.n * action.number};
+    } else {
+        throw new Error('There is no such type.')
     }
 };
 
