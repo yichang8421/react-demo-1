@@ -1,45 +1,84 @@
-import React, {useReducer} from 'react'
+import React, {useReducer} from 'react';
 
 const initial = {
-    n: 0
+    name: "",
+    age: 18,
+    nationality: "汉族"
 };
 
 const reducer = (state, action) => {
-    if (action.type === 'add') {
-        return {n: state.n + action.number};
-    } else if (action.type === 'multi') {
-        return {n: state.n * action.number};
-    } else {
-        throw new Error('There is no such type.')
+    switch (action.type) {
+        case "patch":
+            return {...state, ...action.formData};
+        case "reset":
+            return initial;
+        default:
+            throw new Error("no such type");
     }
 };
 
 const App = () => {
-    const [state, dispatch] = useReducer(reducer, initial);
-    const {n} = state;
+    const [formData, dispatch] = useReducer(reducer, initial);
+
+    const submit = () => {
+    };
+    const reset = () => {
+        dispatch({type: "reset"});
+    };
 
     return (
-        <div>
-            n: {n}
-            <br/>
-            <button onClick={() => {
-                dispatch({
-                    type: "add",
-                    number: 2
-                });
-            }}>+2
-            </button>
-            <br/>
-            <button onClick={() => {
-                dispatch({
-                    type: "multi",
-                    number: 2
-                });
-            }}>x2
-            </button>
-        </div>
+        <form onSubmit={submit} onReset={reset}>
+            <div>
+                <label>
+                    姓名
+                </label>
+                <input value={formData.name}
+                       onChange={e => {
+                           dispatch({
+                               type: "patch",
+                               formData: {
+                                   name: e.target.value
+                               }
+                           })
+                       }}/>
+            </div>
+
+            <div>
+                <label>
+                    年龄
+                </label>
+                <input value={formData.age}
+                       onChange={e => {
+                           dispatch({
+                               type: "patch",
+                               formData: {
+                                   age: e.target.value
+                               }
+                           })
+                       }}/>
+            </div>
+
+            <div>
+                <label>
+                    民族
+                </label>
+                <input value={formData.nationality}
+                       onChange={e => {
+                           dispatch({
+                               type: "patch",
+                               formData: {
+                                   nationality: e.target.value
+                               }
+                           })
+                       }}/>
+            </div>
+
+            <button type='submit'>提交</button>
+            <button type='reset'>重置</button>
+            <hr/>
+            {JSON.stringify(formData)}
+        </form>
     );
 };
-
 
 export default App;
