@@ -1,29 +1,43 @@
-import React, {useRef, useState} from 'react'
+import React, {useReducer} from 'react'
+
+const initial = {
+    n: 0
+};
+
+const reducer = (state, action) => {
+    if (action.type === 'add') {
+        return {n: state.n + action.number};
+    } else if (action.type === 'multi') {
+        return {n: state.n * action.number};
+    }
+};
 
 const App = () => {
-    const nRef = useRef(0);
-    const updateN = useState(null)[1];
+    const [state, dispatch] = useReducer(reducer, initial);
+    const {n} = state;
 
     return (
-        <div className="root">
-            n: {nRef.current}
-
-            <hr/>
+        <div>
+            n: {n}
+            <br/>
             <button onClick={() => {
-                updateN(nRef.current++);
-            }}>+1
+                dispatch({
+                    type: "add",
+                    number: 2
+                });
+            }}>+2
             </button>
-
-            <hr/>
+            <br/>
             <button onClick={() => {
-                setTimeout(() => {
-                    console.log(nRef.current);
-                }, 3000)
-            }}>三秒后控制台打印 n
+                dispatch({
+                    type: "multi",
+                    number: 2
+                });
+            }}>x2
             </button>
         </div>
     );
-}
+};
 
 
 export default App;
